@@ -67,7 +67,7 @@ import java.util.Comparator;
  * Based on castorflex's VerticalViewPager (https://github.com/castorflex/VerticalViewPager)
  * 03.05.15
  */
-public class OrientedViewPager extends ViewGroup {
+public class CardViewPager extends ViewGroup {
 
     public enum Orientation {
         VERTICAL, HORIZONTAL
@@ -254,12 +254,12 @@ public class OrientedViewPager extends ViewGroup {
     interface Decor {
     }
 
-    public OrientedViewPager(Context context) {
+    public CardViewPager(Context context) {
         super(context);
         initViewPager();
     }
 
-    public OrientedViewPager(Context context, AttributeSet attrs) {
+    public CardViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         initViewPager();
     }
@@ -520,7 +520,7 @@ public class OrientedViewPager extends ViewGroup {
 
     /**
      * Set a listener that will be invoked whenever the page changes or is incrementally
-     * scrolled. See {@link android.support.v4.view.ViewPager.OnPageChangeListener}.
+     * scrolled. See {@link ViewPager.OnPageChangeListener}.
      *
      * @param listener Listener to set
      */
@@ -529,7 +529,7 @@ public class OrientedViewPager extends ViewGroup {
     }
 
     /**
-     * Set a {@link android.support.v4.view.ViewPager.PageTransformer} that will be called for each attached page whenever
+     * Set a {@link ViewPager.PageTransformer} that will be called for each attached page whenever
      * the scroll position is changed. This allows the application to apply custom property
      * transformations to each page, overriding the default sliding look and feel.
      * <p/>
@@ -1186,7 +1186,7 @@ public class OrientedViewPager extends ViewGroup {
                     + " position=" + position + "}";
         }
 
-        public static final Parcelable.Creator<ViewPagerSavedState> CREATOR
+        public static final Creator<ViewPagerSavedState> CREATOR
                 = ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<ViewPagerSavedState>() {
             @Override
             public ViewPagerSavedState createFromParcel(Parcel in, ClassLoader loader) {
@@ -3238,7 +3238,7 @@ public class OrientedViewPager extends ViewGroup {
         /**
          * Gravity setting for use on decor views only:
          * Where to position the view page within the overall ViewPager
-         * container; constants are defined in {@link android.view.Gravity}.
+         * container; constants are defined in {@link Gravity}.
          */
         public int gravity;
 
@@ -3324,7 +3324,7 @@ public class OrientedViewPager extends ViewGroup {
     }
 
     /**
-     * Helper for accessing features in {@link android.os.Parcelable}
+     * Helper for accessing features in {@link Parcelable}
      * introduced after API level 4 in a backwards compatible fashion.
      */
     public static class ParcelableCompat {
@@ -3336,17 +3336,17 @@ public class OrientedViewPager extends ViewGroup {
          * @return New creator.
          */
         public static <T> Parcelable.Creator<T> newCreator(
-                OrientedViewPager.ParcelableCompatCreatorCallbacks<T> callbacks) {
-            if (android.os.Build.VERSION.SDK_INT >= 13) {
+                CardViewPager.ParcelableCompatCreatorCallbacks<T> callbacks) {
+            if (Build.VERSION.SDK_INT >= 13) {
                 return ParcelableCompatCreatorHoneycombMR2Stub.instantiate(callbacks);
             }
             return new CompatCreator<T>(callbacks);
         }
 
         public static class CompatCreator<T> implements Parcelable.Creator<T> {
-            final OrientedViewPager.ParcelableCompatCreatorCallbacks<T> mCallbacks;
+            final CardViewPager.ParcelableCompatCreatorCallbacks<T> mCallbacks;
 
-            public CompatCreator(OrientedViewPager.ParcelableCompatCreatorCallbacks<T> callbacks) {
+            public CompatCreator(CardViewPager.ParcelableCompatCreatorCallbacks<T> callbacks) {
                 mCallbacks = callbacks;
             }
 
@@ -3364,15 +3364,15 @@ public class OrientedViewPager extends ViewGroup {
 
 
     static class ParcelableCompatCreatorHoneycombMR2Stub {
-        public static <T> Parcelable.Creator<T> instantiate(OrientedViewPager.ParcelableCompatCreatorCallbacks<T> callbacks) {
+        public static <T> Parcelable.Creator<T> instantiate(CardViewPager.ParcelableCompatCreatorCallbacks<T> callbacks) {
             return new ParcelableCompatCreatorHoneycombMR2<T>(callbacks);
         }
     }
 
     static class ParcelableCompatCreatorHoneycombMR2<T> implements Parcelable.ClassLoaderCreator<T> {
-        private final OrientedViewPager.ParcelableCompatCreatorCallbacks<T> mCallbacks;
+        private final CardViewPager.ParcelableCompatCreatorCallbacks<T> mCallbacks;
 
-        public ParcelableCompatCreatorHoneycombMR2(OrientedViewPager.ParcelableCompatCreatorCallbacks<T> callbacks) {
+        public ParcelableCompatCreatorHoneycombMR2(CardViewPager.ParcelableCompatCreatorCallbacks<T> callbacks) {
             mCallbacks = callbacks;
         }
 
